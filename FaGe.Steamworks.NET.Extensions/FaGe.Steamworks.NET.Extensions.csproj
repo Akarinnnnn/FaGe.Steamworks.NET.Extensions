@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Authors>FaGe</Authors>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Steamworks.NET" Version="2024.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <InternalsVisibleTo Include="FaGe.Steamworks.NET.Extensions.Tests" />
+  </ItemGroup>
+
+</Project>
