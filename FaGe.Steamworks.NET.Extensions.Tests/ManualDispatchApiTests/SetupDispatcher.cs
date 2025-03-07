@@ -1,9 +1,9 @@
 ﻿using Steamworks;
 
-namespace FaGe.Steamworks.NET.Extensions.Tests
+namespace FaGe.Steamworks.NET.Extensions.Tests.ManualDispatchApiTests
 {
 	[SetUpFixture]
-	public class GSSteamApiManager
+	public class SetupDispatcher
 	{
 		private CancellationTokenSource dispatchThreadStop;
 		private Thread dispatchThread;
@@ -11,7 +11,6 @@ namespace FaGe.Steamworks.NET.Extensions.Tests
 		[OneTimeSetUp]
 		public void SteamInit()
 		{
-			Assert.That(GameServer.Init(0, 27016, 27017, EServerMode.eServerModeNoAuthentication, "S.NET Automated Test"), Is.True);
 			dispatchThreadStop = new();
 			dispatchThread = new(() =>
 			{
@@ -26,7 +25,6 @@ namespace FaGe.Steamworks.NET.Extensions.Tests
 				IsBackground = true
 			};
 			dispatchThread.Start();
-			// Assert.That(SteamAPI.Init(), Is.True);
 		}
 
 		[OneTimeTearDown]
@@ -34,7 +32,6 @@ namespace FaGe.Steamworks.NET.Extensions.Tests
 		{
 			dispatchThreadStop.Cancel();
 			dispatchThreadStop.Dispose();
-			GameServer.Shutdown();
 		}
 
 	}

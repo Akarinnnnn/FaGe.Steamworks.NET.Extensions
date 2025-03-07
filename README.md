@@ -20,3 +20,7 @@ As you can see, this project is aimed to extend modern features to `Steamworks.N
 		// somewhere else that want to cancel
 		ctsInSomeField.Cancel()
 		```
+- Spawn automatic steam callback dispatcher thread by `SteamCallbackDispatch.Singleton.SpawnCallbackDispatchThread()` method.
+	- Stop the dispatcher thread by the returned `CancellationTokenSource`. `SteamCallbackDispatch.Singleton.StopDispatchSource` is also the same.
+		Beware, once the thread is stopped, it can't be restarted.
+	- Lived in namespace `FaGe.Steamworks.NET.Extensions`

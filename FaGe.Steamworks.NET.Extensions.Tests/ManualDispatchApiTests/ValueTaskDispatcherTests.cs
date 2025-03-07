@@ -2,22 +2,23 @@
 using Steamworks;
 using System.Diagnostics;
 
-namespace FaGe.Steamworks.NET.Extensions.Tests.GameServerApiTests;
+namespace FaGe.Steamworks.NET.Extensions.Tests.ManualDispatchApiTests;
 
-public class ServerValueTaskDispatchTest
+[TestFixture]
+public class ValueTaskDispatcherTests
 {
 	private ulong modFAGE_id = 1579583001;
 
 	[Test]
 	public void TestAwait()
 	{
-		var queryHandle = SteamGameServerUGC.CreateQueryUGCDetailsRequest([new(modFAGE_id)], 1);
+		var queryHandle = SteamUGC.CreateQueryUGCDetailsRequest([new(modFAGE_id)], 1);
 		Assert.ThatAsync(async () =>
 		{
-			var queryResult = await SteamGameServerUGC.SendQueryUGCRequest(queryHandle).ToValueTask<SteamUGCQueryCompleted_t>();
+			var queryResult = await SteamUGC.SendQueryUGCRequest(queryHandle).ToValueTask<SteamUGCQueryCompleted_t>();
 
 
-			Assert.Pass();
+			Assert.That(queryResult.m_eResult, Is.EqualTo(EResult.k_EResultOK));
 
 		}, Throws.Nothing.Or.InstanceOf<SteamAPICallException>());
 		// completionHolder[i].Set(queryApiCallHandle);
@@ -26,10 +27,10 @@ public class ServerValueTaskDispatchTest
 	[Test]
 	public void TestCancel()
 	{
-		var queryHandle = SteamGameServerUGC.CreateQueryUGCDetailsRequest([new(modFAGE_id)], 1);
+		var queryHandle = SteamUGC.CreateQueryUGCDetailsRequest([new(modFAGE_id)], 1);
 		Assert.ThatAsync(async () =>
 		{
-			var queryResultTask = SteamGameServerUGC.SendQueryUGCRequest(queryHandle)
+			var queryResultTask = SteamUGC.SendQueryUGCRequest(queryHandle)
 					.ToValueTaskWithCancellation<SteamUGCQueryCompleted_t>(out var cts);
 			cts.Cancel();
 			await queryResultTask;
