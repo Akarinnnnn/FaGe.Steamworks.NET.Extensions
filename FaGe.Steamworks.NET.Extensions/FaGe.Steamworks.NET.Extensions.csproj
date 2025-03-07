@@ -6,6 +6,21 @@
     <Nullable>enable</Nullable>
     <Authors>FaGe</Authors>
     <Version>1.0.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Akarinnnnn/FaGe.Steamworks.NET.Extensions.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Akarinnnnn/FaGe.Steamworks.NET.Extensions</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>
+      FaGe's Steamworks.NET Extension for .NET 8+.
+      This project is aimed to adapt regular .NET8+ projects's idiom based on `Steamworks.NET`.
+      
+      Extended features list: 
+      Convert call-result to ValueTask&lt;TResult&gt;.
+      Spawn automatic steam callback dispatcher thread.
+    </Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +34,9 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <InternalsVisibleTo Include="FaGe.Steamworks.NET.Extensions.Tests" />
+    <Content Include="../README.md" Link="README.md" Pack="true">
+      <PackagePath>README.md</PackagePath>
+    </Content>
   </ItemGroup>
 
 </Project>
