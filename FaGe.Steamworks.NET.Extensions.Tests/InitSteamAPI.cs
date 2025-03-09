@@ -18,10 +18,8 @@ namespace FaGe.Steamworks.NET.Extensions.Tests
 
 			Assert.Multiple(() =>
 			{
-				Assert.That(clInit, Is.EqualTo(ESteamAPIInitResult.k_ESteamAPIInitResult_OK));
-				Assert.That(gsInit, Is.EqualTo(ESteamAPIInitResult.k_ESteamAPIInitResult_OK));
-				Assert.That(clErr, Is.Empty);
-				Assert.That(gsErr, Is.Empty);
+				Assert.That(clInit, Is.EqualTo(ESteamAPIInitResult.k_ESteamAPIInitResult_OK), clErr);
+				Assert.That(gsInit, Is.EqualTo(ESteamAPIInitResult.k_ESteamAPIInitResult_OK), gsErr);
 			});
 		}
 
@@ -29,6 +27,7 @@ namespace FaGe.Steamworks.NET.Extensions.Tests
 		public void Shutdown()
 		{
 			SteamAPI.Shutdown();
+			GameServer.Shutdown();
 		}
 	}
 }

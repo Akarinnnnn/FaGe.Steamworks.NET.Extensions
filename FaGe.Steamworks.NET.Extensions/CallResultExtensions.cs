@@ -13,6 +13,7 @@ public static class CallResultExtensions
 
 		cancel = cts;
 
+		// pass cts.Token here is for awaiting place know task cancelled, then throw a OCE as excepted
 		return new CallResultValueTaskSource<T>().Setup(handle, native, cts.Token);
 	}
 
