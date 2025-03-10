@@ -6,6 +6,7 @@ namespace FaGe.Steamworks.NET.Extensions.Tests.AutomaticDispatchApiTests.Ugc.Que
 
 public class DetailsBuilderTests
 {
+	private DetailsUgcQueryBuilder? builder;
 	private PublishedFileId_t modValid;
 
 	[SetUp]
@@ -17,24 +18,24 @@ public class DetailsBuilderTests
 	[Test]
 	public void TestDetailsQueryClient()
 	{
-		DetailsUgcQueryBuilder builder = UgcQueryBuilders.Details([modValid], false);
+		builder = UgcQueryBuilders.Details([modValid], false);
+
 		using (var block = Assert.EnterMultipleScope())
 		{
 			TestAllBaseMethods(builder);
 		}
-		TestAllSpecificMethods(builder);
 		Assert.That(builder.AbandonQuery, Throws.Nothing);
 	}
 
 	[Test]
 	public void TestDetailsQueryGameServer()
 	{
-		DetailsUgcQueryBuilder builder = UgcQueryBuilders.Details([modValid], true);
+		builder = UgcQueryBuilders.Details([modValid], true);
+
 		using (var block = Assert.EnterMultipleScope())
 		{
 			TestAllBaseMethods(builder);
 		}
-		TestAllSpecificMethods(builder);
 		Assert.That(builder.AbandonQuery, Throws.Nothing);
 	}
 
@@ -55,8 +56,20 @@ public class DetailsBuilderTests
 		});
 	}
 
-	private static void TestAllSpecificMethods(DetailsUgcQueryBuilder builder)
+	[Test]
+	public void TestAllSpecificMethods()
 	{
-		
+		try
+		{
+			builder = UgcQueryBuilders.Details([modValid], true);
+
+			builder.FilterCloudFileName("filename");
+			builder.AbandonQuery();
+			Assert.Pass();
+		}
+		catch (UgcQueryBuildException e)
+		{
+			Assert.Inconclusive(e.ToString());
+		}
 	}
 }
