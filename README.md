@@ -1,4 +1,8 @@
-# FaGe's Steamworks.NET Extension for .NET 8+
+
+
+
+
+# FaGe's Steamworks.NET Extension for .NET 8+ [![NuGet Version](https://img.shields.io/nuget/v/FaGe.Steamworks.NET.Extensions)](https://www.nuget.org/packages/fage.steamworks.net.extensions) ![GitHub License](https://img.shields.io/github/license/Akarinnnnn/FaGe.Steamworks.NET.Extensions)
 
 As you can see, this project is aimed to extend modern features to `Steamworks.NET` on regular .NET projects that targeting to up to date framework.
 
